@@ -6,10 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Conan基础集成（重要）
+# Conan基础集成
 include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
-
-add_subdirectory(thirdparty)
 
 # 现代CMake目标链接方式
 find_package(GTest REQUIRED CONFIG)  # 使用CONFIG模式查找
@@ -48,4 +46,9 @@ foreach(SRC_FILE ${SRC_FILES})
     target_link_libraries(${EXEC_NAME} leetcode_common gtest::gtest)
 endforeach()
 
-# 移除 add_subdirectory(include) （头文件目录不需要编译）
+
+# 清理不需要文件
+add_custom_target(clean_all ALL
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}
+    COMMENT "Cleaning build directory"
+)
