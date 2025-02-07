@@ -10,9 +10,9 @@
 // }
 
 // 双指针解法
-vector<int> sortedSquares(vector<int> &nums) {
+std::vector<int> sortedSquares(std::vector<int> &nums) {
   int left = 0, right = nums.size() - 1;
-  vector<int> ans(nums.size());
+  std::vector<int> ans(nums.size());
   int pos = nums.size() - 1;
 
   while (left <= right) {
@@ -29,16 +29,16 @@ vector<int> sortedSquares(vector<int> &nums) {
 }
 
 struct TestCase {
-  vector<int> input;
-  vector<int> expected;
+  std::vector<int> input;
+  std::vector<int> expected;
 };
 
 class Tester : public testing::TestWithParam<TestCase> {};
 
 TEST_P(Tester, HandlesVariousCases) {
   TestCase test = GetParam();
-  vector<int> input = test.input;
-  vector<int> result = sortedSquares(input);
+  std::vector<int> input = test.input;
+  std::vector<int> result = sortedSquares(input);
   EXPECT_EQ(result, test.expected) << "Failed for input: " << test.input;
 }
 

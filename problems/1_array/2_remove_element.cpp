@@ -35,7 +35,7 @@
 // }
 
 // 快慢指针
-int removeElement(vector<int> &nums, int val) {
+int removeElement(std::vector<int> &nums, int val) {
   size_t fast = 0, slow = 0;
   for (; fast < nums.size(); ++fast) {
     if (nums[fast] != val) {
@@ -46,9 +46,9 @@ int removeElement(vector<int> &nums, int val) {
 }
 
 struct TestCase {
-  vector<int> nums;
+  std::vector<int> nums;
   int val;
-  vector<int> expected_nums;
+  std::vector<int> expected_nums;
   int expected_size;
 };
 
@@ -56,12 +56,12 @@ class Tester : public testing::TestWithParam<TestCase> {};
 
 TEST_P(Tester, RemovesSpecifiedElements) {
   TestCase test = GetParam();
-  vector<int> nums = test.nums;
+  std::vector<int> nums = test.nums;
   int new_size = removeElement(nums, test.val);
   EXPECT_EQ(new_size, test.expected_size)
       << "Failed for input: " << test.nums << " with val: " << test.val;
 
-  vector<int> result(nums.begin(), nums.begin() + new_size);
+  std::vector<int> result(nums.begin(), nums.begin() + new_size);
   EXPECT_EQ(result, test.expected_nums)
       << "Mismatch in modified array for input: " << test.nums
       << " with val: " << test.val;

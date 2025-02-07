@@ -19,7 +19,7 @@
 // }
 
 // 左闭右开写法
-int search(vector<int> &nums, int target) {
+int search(std::vector<int> &nums, int target) {
   int middle;
   int left = 0, right = nums.size();
   // 循环条件的判断就是看条件是否符合区间定义
@@ -37,7 +37,7 @@ int search(vector<int> &nums, int target) {
 }
 
 struct TestCase {
-  vector<int> nums;
+  std::vector<int> nums;
   int target;
   int expected_index;
 };
@@ -45,8 +45,9 @@ struct TestCase {
 class Tester : public testing::TestWithParam<TestCase> {};
 
 TEST_P(Tester, FindsTargetIndex) {
+  // using ::operator<<;
   TestCase test = GetParam();
-  vector<int> nums = test.nums;
+  std::vector<int> nums = test.nums;
   int result = search(nums, test.target);
   EXPECT_EQ(result, test.expected_index)
       << "Failed for input: " << nums << " with target: " << test.target;

@@ -1,8 +1,8 @@
 #include "base.hpp"
 
 // 循环不变量--->坚持左闭右开
-vector<vector<int>> generateMatrix(int n) {
-  vector<vector<int>> matrix(n, vector<int>(n, 0));
+std::vector<std::vector<int>> generateMatrix(int n) {
+  std::vector<std::vector<int>> matrix(n, std::vector<int>(n, 0));
 
   int loop = n / 2; // 总共要循环几圈
   int start = 0, offset = 1;
@@ -47,14 +47,14 @@ vector<vector<int>> generateMatrix(int n) {
 
 struct TestCase {
   int n;
-  vector<vector<int>> matrix;
+  std::vector<std::vector<int>> matrix;
 };
 
 class Tester : public testing::TestWithParam<TestCase> {};
 
 TEST_P(Tester, FindsTargetIndex) {
   TestCase test = GetParam();
-  vector<vector<int>> matrixult = generateMatrix(test.n);
+  std::vector<std::vector<int>> matrixult = generateMatrix(test.n);
   EXPECT_EQ(matrixult, test.matrix)
       << "Failed for input: " << test.n << " with matrix: " << test.matrix;
 }

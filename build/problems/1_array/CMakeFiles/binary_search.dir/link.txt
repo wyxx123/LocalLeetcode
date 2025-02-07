@@ -1,0 +1,3 @@
+D:\cmake\bin\cmake.exe -E rm -f CMakeFiles\binary_search.dir/objects.a
+D:\mingw64\SysGCC\bin\ar.exe qc CMakeFiles\binary_search.dir/objects.a @CMakeFiles\binary_search.dir\objects1.rsp
+D:\mingw64\SysGCC\bin\c++.exe -m64 -O3 -DNDEBUG -m64 -Wl,--whole-archive CMakeFiles\binary_search.dir/objects.a -Wl,--no-whole-archive -o binary_search.exe -Wl,--out-implib,libbinary_search.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\binary_search.dir\linkLibs.rsp

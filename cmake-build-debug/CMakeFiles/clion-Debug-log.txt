@@ -1,0 +1,10 @@
+"D:\clion\CLion 2024.2.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/clion/CLion 2024.2.3/bin/ninja/win/x64/ninja.exe" -G Ninja -S D:\.useful\codes\cpp\local-leetcode -B D:\.useful\codes\cpp\local-leetcode\cmake-build-debug
+CMake Error at thirdparty/CMakeLists.txt:1 (add_subdirectory):
+  The source directory
+
+    D:/.useful/codes/cpp/local-leetcode/thirdparty/googletest
+
+  does not contain a CMakeLists.txt file.
+
+
+-- Configuring incomplete, errors occurred!

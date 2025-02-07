@@ -4,16 +4,16 @@ void problem_func() {}
 
 //测试用例及其期望结果
 struct TestCase {
-  vector<int> input;
-  vector<int> expected;
+  std::vector<int> input;
+  std::vector<int> expected;
 };
 
 class Tester : public testing::TestWithParam<TestCase> {};
 
 TEST_P(Tester, HandlesVariousCases) {
   TestCase test = GetParam();
-  vector<int> input = test.input;
-  vector<int> result = sortedSquares(input);
+  std::vector<int> input = test.input;
+  std::vector<int> result = sortedSquares(input);
   EXPECT_EQ(result, test.expected) << "Failed for input: " << test.input;
 }
 

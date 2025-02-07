@@ -5,12 +5,12 @@ ListNode *removeElements(ListNode *head, int val) {
 }
 
 struct TestCase {
-  vector<int> input;
+  std::vector<int> input;
   int val;
-  vector<int> expected;
+  std::vector<int> expected;
 };
 
-ostream &operator<<(ostream &os, const struct TestCase &test) {
+std::ostream &operator<<(std::ostream &os, const struct TestCase &test) {
   os << "{ nums: " << listToVector(vectorToList(test.input))
      << ", val: " << test.val << ", expected: " << test.expected << " }";
   return os;
@@ -22,7 +22,7 @@ TEST_P(Tester, RemovesSpecifiedElements) {
   TestCase test = GetParam();
   ListNode *head = vectorToList(test.input);
   ListNode *result = removeElements(head, test.val);
-  vector<int> result_vec = listToVector(result);
+  std::vector<int> result_vec = listToVector(result);
   EXPECT_EQ(result_vec, test.expected)
       << "Failed for input: " << test.input << " with val: " << test.val;
 

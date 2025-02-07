@@ -1,7 +1,7 @@
 #include "base.hpp"
 
 // 暴力解法
-// int minSubArrayLen(int target, vector<int> &nums) {
+// int minSubArrayLen(int target, std::vector<int> &nums) {
 //   int minlen = INT32_MAX;
 //   for (size_t i = 0; i < nums.size(); ++i) {
 //     int sum = 0;
@@ -17,7 +17,7 @@
 // }
 
 // 滑动窗口--->双指针
-int minSubArrayLen(int target, vector<int> &nums) {
+int minSubArrayLen(int target, std::vector<int> &nums) {
   int start = 0, end = 0;
   int sum = 0;
   int min_len = INT32_MAX;
@@ -36,7 +36,7 @@ int minSubArrayLen(int target, vector<int> &nums) {
 }
 
 struct TestCase {
-  vector<int> nums;
+  std::vector<int> nums;
   int target;
   int expected_min_length;
 };
@@ -45,7 +45,7 @@ class Tester : public testing::TestWithParam<TestCase> {};
 
 TEST_P(Tester, FindsTargetIndex) {
   TestCase test = GetParam();
-  vector<int> nums = test.nums;
+  std::vector<int> nums = test.nums;
   int result = minSubArrayLen(test.target, test.nums);
   EXPECT_EQ(result, test.expected_min_length)
       << "Failed for input: " << nums << " with target: " << test.target;

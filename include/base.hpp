@@ -1,11 +1,9 @@
+#include <gtest/gtest.h>
+
 #include <algorithm>
 #include <cstdint>
-#include <gtest/gtest.h>
 #include <iostream>
 #include <vector>
-
-using namespace std;
-
 struct ListNode {
   int val;
   ListNode *next;
@@ -14,11 +12,32 @@ struct ListNode {
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+ListNode *vectorToList(const std::vector<int> &vec) {
+  ListNode dummy(0);
+  ListNode *current = &dummy;
+  for (int num : vec) {
+    current->next = new ListNode(num);
+    current = current->next;
+  }
+  return dummy.next;
+}
+
+std::vector<int> listToVector(ListNode *head) {
+  std::vector<int> vec;
+  while (head != nullptr) {
+    vec.push_back(head->val);
+    head = head->next;
+  }
+  return vec;
+}
+
+namespace std{
 ostream &operator<<(ostream &os, const vector<int> &vec) {
   os << "[";
   for (size_t i = 0; i < vec.size(); ++i) {
-    if (i > 0)
+    if (i > 0) {
       os << ", ";
+    }
     os << vec[i];
   }
   os << "]";
@@ -51,33 +70,14 @@ std::ostream &operator<<(std::ostream &os, const ListNode *list) {
   return os;
 }
 
-ListNode *vectorToList(const vector<int> &vec) {
-  ListNode dummy(0);
-  ListNode *current = &dummy;
-  for (int num : vec) {
-    current->next = new ListNode(num);
-    current = current->next;
-  }
-  return dummy.next;
-}
-
-vector<int> listToVector(ListNode *head) {
-  vector<int> vec;
-  while (head != nullptr) {
-    vec.push_back(head->val);
-    head = head->next;
-  }
-  return vec;
-}
-
-ostream &operator<<(ostream &os, ListNode *head) {
-  vector<int> vec = listToVector(head);
+std::ostream &operator<<(std::ostream &os, ListNode *head) {
+  std::vector<int> vec = listToVector(head);
   os << "[";
   for (size_t i = 0; i < vec.size(); ++i) {
-    if (i > 0)
-      os << ", ";
+    if (i > 0) os << ", ";
     os << vec[i];
   }
   os << "]";
   return os;
+}
 }
