@@ -23,12 +23,13 @@
  * 上述调用相当于调用 addAndMultiply(2,2,3) 得到结果 12，
  * 然后使用 lambda 判断结果与预期是否相等。
  */
-#define LEETCODE_TEST_EX(func, expected, cmp, ...)                         \
-  TEST(func##_Test, CONCAT(Test_, __LINE__)) {                             \
-    auto tup = std::make_tuple(__VA_ARGS__);                               \
-    auto result = std::experimental::apply(func, tup);                     \
-    ASSERT_TRUE(cmp(result, expected))                                     \
-        << "Test failed: expected " << expected << ", but got " << result; \
+#define LEETCODE_TEST_EX(func, expected, cmp, ...)                      \
+  TEST(func##_Test, CONCAT(Test_, __LINE__)) {                          \
+    auto tup = std::make_tuple(__VA_ARGS__);                            \
+    auto result = std::experimental::apply(func, tup);                  \
+    ASSERT_TRUE(cmp(result, expected))                                  \
+        << "Test failed: expected " << testing::PrintToString(expected) \
+        << ", but got " << testing::PrintToString(result);              \
   }
 
 /*
@@ -39,11 +40,13 @@
  * 示例：
  *   LEETCODE_TEST(addAndMultiply, 12, 2, 2, 3);
  */
-#define LEETCODE_TEST(func, expected, ...)             \
-  TEST(func##_Test, CONCAT(Test_, __LINE__)) {         \
-    auto tup = std::make_tuple(__VA_ARGS__);           \
-    auto result = std::experimental::apply(func, tup); \
-    EXPECT_EQ(result, expected);                       \
+#define LEETCODE_TEST(func, expected, ...)                              \
+  TEST(func##_Test, CONCAT(Test_, __LINE__)) {                          \
+    auto tup = std::make_tuple(__VA_ARGS__);                            \
+    auto result = std::experimental::apply(func, tup);                  \
+    EXPECT_EQ(result, expected)                                         \
+        << "Test failed: expected " << testing::PrintToString(expected) \
+        << ", but got " << testing::PrintToString(result);              \
   }
 
 int main(int argc, char **argv) {

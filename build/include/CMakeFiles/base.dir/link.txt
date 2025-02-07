@@ -1,3 +1,0 @@
-D:\cmake\bin\cmake.exe -E rm -f CMakeFiles\base.dir/objects.a
-D:\mingw64\SysGCC\bin\ar.exe qc CMakeFiles\base.dir/objects.a @CMakeFiles\base.dir\objects1.rsp
-D:\mingw64\SysGCC\bin\c++.exe -Wall -g -Wall -m64 -Wl,--whole-archive CMakeFiles\base.dir/objects.a -Wl,--no-whole-archive -o base.exe -Wl,--out-implib,libbase.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\base.dir\linkLibs.rsp

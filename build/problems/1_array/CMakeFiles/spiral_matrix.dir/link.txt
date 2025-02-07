@@ -1,3 +1,0 @@
-D:\cmake\bin\cmake.exe -E rm -f CMakeFiles\spiral_matrix.dir/objects.a
-D:\mingw64\SysGCC\bin\ar.exe qc CMakeFiles\spiral_matrix.dir/objects.a @CMakeFiles\spiral_matrix.dir\objects1.rsp
-D:\mingw64\SysGCC\bin\c++.exe -m64 -O3 -DNDEBUG -m64 -Wl,--whole-archive CMakeFiles\spiral_matrix.dir/objects.a -Wl,--no-whole-archive -o spiral_matrix.exe -Wl,--out-implib,libspiral_matrix.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\spiral_matrix.dir\linkLibs.rsp

@@ -20,6 +20,32 @@ target_include_directories(leetcode_common INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
-add_subdirectory(problems/1_array)
-add_subdirectory(problems/2_list)
+file(GLOB_RECURSE SRC_FILES "problems/**/*.cpp")
+
+# 启用测试
+enable_testing()
+
+# 遍历所有可执行文件
+foreach(SRC_FILE ${SRC_FILES})
+    # 获取子文件夹名和文件名并拼接（例如: 1_array/problem_1.cpp -> 1_array/problem_1）
+    get_filename_component(SRC_DIR ${SRC_FILE} DIRECTORY)
+    get_filename_component(SRC_DIR ${SRC_DIR} NAME)
+    get_filename_component(FILE_NAME ${SRC_FILE} NAME_WE)
+    
+    set(EXEC_NAME "${SRC_DIR}-${FILE_NAME}")
+    # 拼接子文件夹名和文件名作为可执行目标名
+    string(REPLACE "/" "_" EXEC_NAME "${EXEC_NAME}")
+    string(REPLACE "." "" EXEC_NAME "${EXEC_NAME}")
+    string(REPLACE ":" "" EXEC_NAME "${EXEC_NAME}")
+
+    # 创建可执行文件
+    add_executable(${EXEC_NAME} ${SRC_FILE})
+
+    # 添加测试目标
+    add_test(NAME ${EXEC_NAME} COMMAND ${EXEC_NAME})
+
+    # 如果需要链接到 gtest 或其他库，可以使用 target_link_libraries
+    target_link_libraries(${EXEC_NAME} leetcode_common gtest::gtest)
+endforeach()
+
 # 移除 add_subdirectory(include) （头文件目录不需要编译）

@@ -1,3 +1,0 @@
-D:\cmake\bin\cmake.exe -E rm -f CMakeFiles\squares_of_a_sorted_array.dir/objects.a
-D:\mingw64\SysGCC\bin\ar.exe qc CMakeFiles\squares_of_a_sorted_array.dir/objects.a @CMakeFiles\squares_of_a_sorted_array.dir\objects1.rsp
-D:\mingw64\SysGCC\bin\c++.exe -m64 -O3 -DNDEBUG -m64 -Wl,--whole-archive CMakeFiles\squares_of_a_sorted_array.dir/objects.a -Wl,--no-whole-archive -o squares_of_a_sorted_array.exe -Wl,--out-implib,libsquares_of_a_sorted_array.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\squares_of_a_sorted_array.dir\linkLibs.rsp
