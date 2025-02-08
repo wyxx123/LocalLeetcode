@@ -48,7 +48,7 @@ endforeach()
 
 
 # 清理不需要文件
-add_custom_target(clean_all ALL
+add_custom_target(clean_all
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}
     COMMENT "Cleaning build directory"
 )
