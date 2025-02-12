@@ -1,71 +1,55 @@
-# LeetCode 本地调试运行工程
+# LeetCode 本地调试运行工程 (LocalLeetcode)
 
 ## 简介
 
-本项目基于 Google Test（gtest）框架，旨在提供一个可在本地环境中调试和运行 LeetCode 题目的工程。其中题目选择参考了[代码随想录](https://programmercarl.com/)
+本项目用于方便地在本地运行于测试leetcode的C++题目. 基于[local-leetcode项目](https://github.com/hzn-neu/local-leetcode)进行了简化与改造. 项目基于gtest进行测试
 
 ## 环境要求
 
 - **编程语言**：C++
 - **构建工具**：CMake
-- **测试框架**：Google Test (gtest)
+- **测试框架**：Google Test (gtest) (通过canon进行安装)
 - **编译器**：支持 C++14 或更高版本的编译器（如 GCC, Clang, MSVC）
+
+## 运行系统
+
+可以直接运行于window系统中, 未来可能改造以运行于更多系统上
 
 ## 代码编译
 
-gtest库已存放在thirdparty目录中，直接编译即可
-
-```bash
-git clone https://github.com/hzn-neu/local-leetcode.git
-cd local-leetcode
-git submodule update --init --recursive
-mkdir build
-cd build
-cmake .. && make
-```
-
-## 代码运行
-* 编译后的可执行文件位于 build/problems/题型/题
-* 为了方便代码在vscode环境调试，vscode_config目录下提供了相关配置文件
+将代码放入problems文件夹下, 在window系统下可以直接运行build.bat编译代码
+代码会被编译入build文件夹下
+运行clean_all.bat清理build文件
 
 ## 题目编写模板
 为了更好的在本地刷题，可以按以下模板编写代码
 ```c++
 #include "base.hpp"
+#include "test.hpp"
 
-//题目
-T func() {
-  
+// 左闭右开写法
+int search(std::vector<int> &nums, int target) {
+  int middle;
+  int left = 0, right = nums.size();
+  // 循环条件的判断就是看条件是否符合区间定义
+  while (left < right) {
+    middle = left + (right - left) / 2;
+    if (nums[middle] > target) {
+      right = middle;
+    } else if (nums[middle] < target) {
+      left = middle + 1;
+    } else {
+      return middle;
+    }
+  }
+  return -1;
 }
 
-//测试用例，包括输入和期望输出
-struct TestCase {
-  T input;
-  T output;
-};
 
-class Tester : public testing::TestWithParam<TestCase> {};
-
-TEST_P(Tester, FindsTargetIndex) {
-  TestCase test = GetParam();
-  T input = test.input;
-  T result = func(input);
-
-  //测试用例验证逻辑
-  EXPECT_EQ(result, test.output)
-      << "Failed for input: " << input << " with target: " << test.output;
-}
-
-INSTANTIATE_TEST_SUITE_P(
-    VariousInputs, Tester,
-    testing::Values(
-		//补充测试用例
-        TestCase{{}, {}}}));
-
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+LEETCODE_TEST(search, -1, (std::vector<int>{}), 5)
+LEETCODE_TEST(search, 0, (std::vector<int>{1}), 1)
+LEETCODE_TEST(search, 0, (std::vector<int>{1, 2, 3, 4, 5}), 1)
+LEETCODE_TEST(search, 2, (std::vector<int>{1, 2, 3, 4, 5}), 3)
 ```
 
 ## 贡献
@@ -77,3 +61,5 @@ int main(int argc, char **argv) {
 3. 提交更改：git commit -m '添加了某某功能'
 4. 推送分支：git push origin feature/YourFeature
 5. 创建 Pull Request。
+
+欢迎star[本仓库](https://github.com/wyxx123/LocalLeetcode)及leetcode-local[原仓库](https://github.com/hzn-neu/local-leetcode)!
